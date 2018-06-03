@@ -1,0 +1,9 @@
+---
+
+- hosts: "{{environment}}-forgerock"
+  vars_files:
+    - inv/{{environment}}/vars.yml
+
+  roles:
+    cleanTomcat.yaml
+    installTomcat.yaml
