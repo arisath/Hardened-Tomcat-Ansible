@@ -1,0 +1,6 @@
+---
+
+- name: Remove Tomcat
+  command: rm -rf /var/apache-tomcat-{{tomcat_version}}
+  become: yes
+  become_user: root

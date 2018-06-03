@@ -2,8 +2,8 @@
 
 - hosts: local
   vars_files:
-    - inv/{{environment}}/vars.yml
+    - inv/vars.yml
 
   roles:
-    cleanTomcat.yaml
-    installTomcat.yaml
+    - cleanTomcat.yaml
+    - installTomcat.yaml
