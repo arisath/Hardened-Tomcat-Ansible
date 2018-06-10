@@ -2,7 +2,7 @@
 
 - hosts: local
   vars_files:
-    - inv/vars.yml
+    - inv/localhost/vars.yml
 
   roles:
     - cleanTomcat.yaml
