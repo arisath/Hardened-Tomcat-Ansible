@@ -1,0 +1,13 @@
+---
+
+- name: Remove Tomcat
+  command: rm -rf apache-tomcat
+  args:
+     chdir: /var/
+  become: yes
+  become_user: root
+  with_items: 
+    - apache-tomcat
+    - apache-tomcat-9.0.7-src
+  ignore_erros: true
+

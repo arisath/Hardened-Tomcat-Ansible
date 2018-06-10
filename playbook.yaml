@@ -1,9 +1,10 @@
 ---
 
-- hosts: local
+- hosts: aws
   vars_files:
-    - inv/localhost/vars.yaml
+    - inv/aws/vars.yaml
+  remote_user: ec2-user
 
   roles:
-    - cleanTomcat.yaml
-    - installTomcat.yaml
+    - cleanTomcat
+    - installTomcat
