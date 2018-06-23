@@ -97,5 +97,7 @@
 
  - name: Wait for tomcat to start
    wait_for:
-     path: /tmp/foo
-     search_regex: completed  
+     path: /var/apache-tomcat/logs/catalina.out
+     search_regex: Server startup   
+   become: yes
+   become_user: tomcat

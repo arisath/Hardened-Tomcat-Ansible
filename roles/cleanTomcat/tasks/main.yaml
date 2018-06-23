@@ -2,12 +2,12 @@
 
  - name: Remove Tomcat
    command: rm -rf "{{ item }}"
-   args:
-     chdir: /var/
    become: yes
    become_user: root
    with_items: 
-     - "apache-tomcat"
+     - "/var/apache-tomcat"
+     - "/tmp/*"
+     - "/etc/init.d/tomcat"
 
 
  - name: Kill tomcat process
