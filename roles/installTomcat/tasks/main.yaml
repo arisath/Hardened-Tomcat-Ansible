@@ -16,7 +16,7 @@
    become: yes
    become_user: root
 
- - name: Create Tomcat group if not present
+ - name: Create tomcat group if not present
    group:
     name="{{ tomcat_group }}"
     state=present
@@ -31,10 +31,10 @@
    become: yes
    become_user: root
 
- - name: Download Tomcat from Apache
+ - name: Download tomcat from apache
    get_url: url="{{tomcat_url}}" dest=/tmp/ force=no
 
- - name: Unzip Tomcat
+ - name: Unzip tomcat
    unarchive:
     src: "/tmp/apache-tomcat-{{tomcat_version}}.zip"
     dest: /var/
@@ -42,7 +42,7 @@
    become: yes
    become_user: root
 
- - name: Rename Tomcat folder
+ - name: Rename tomcat folder
    command: mv  "apache-tomcat-{{tomcat_version}}" apache-tomcat
    args:
      chdir: /var/
@@ -59,7 +59,7 @@
    become: yes
    become_user: root
 
- - name: Make Tomcat executable
+ - name: Make tomcat executable
    command: /bin/sh -c 'chmod 755 /var/apache-tomcat/bin/*.sh'
    become: yes
    become_user: root
@@ -73,17 +73,7 @@
    become: yes
    become_user: root
 
- # - name: Make tomcat service script executable
- #   command: chmod 755 /tmp/tomcat
- #   become: yes
- #   become_user: root
-
- # - name: Move Tomcat startup script to init.d
- #   command: cp /tmp/tomcat  /etc/init.d/
- #   become: yes
- #   become_user: root
-
- - name: Register Tomcat
+ - name: Register tomcat
    command: chkconfig --add tomcat
    become: yes
    become_user: root
@@ -93,21 +83,19 @@
  #   become: yes
  #   become_user: tomcat
 
- - name: Delete Tomcat Examples folder
+ - name: Delete tomcat examples folder
    file:
      path: "/var/apache-tomcat/webapps/examples"
      state: absent
    become: yes
    become_user: root
 
- - name: Start Tomcat
+ - name: Start tomcat
    command: service tomcat start
    become: yes
    become_user: root
 
- - name: Wait for Tomcat to start
-   shell: curl --head http://localhost:8080
-   register: result
-   until: result.stdout.find("200 OK") != -1
-   retries: 10
-   delay: 30
+ - name: Wait for tomcat to start
+   wait_for:
+     path: /tmp/foo
+     search_regex: completed  

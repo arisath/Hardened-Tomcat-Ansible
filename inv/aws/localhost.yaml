@@ -1,4 +1,4 @@
 ---
 
 [aws]
-18.220.36.77
+18.219.133.152 ansible_ssh_user=ec2-user

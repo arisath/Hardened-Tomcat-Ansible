@@ -9,6 +9,15 @@
    with_items: 
      - "apache-tomcat"
 
+
+ - name: Kill tomcat process
+   command:    ps aux  |  grep -i tomcat  |  awk '{print $2}'  |  xargs sudo kill -9
+   become: yes
+   become_user: root
+   ignore_errors: true
+
+
+
  # - name: Remove default Apache config
  #   shell: rm *.conf
  #   args:
