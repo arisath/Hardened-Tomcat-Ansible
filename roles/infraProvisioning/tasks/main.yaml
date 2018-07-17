@@ -1,0 +1,27 @@
+---
+
+    - name: Provision a set of instances
+      ec2:
+         aws_access_key: "{{aws_access_key}}"
+         aws_secret_key: "{{aws_secret_key}}"
+         key_name: personal-aws-london
+         instance_type: t2.medium
+         image: ami-7c1bfd1b
+         exact_count: 1
+         region: eu-west-2
+         vpc_subnet_id: subnet-9668b8ec
+         private_ip: 172.31.16.20
+         assign_public_ip: yes
+         count_tag:
+            Name: demo
+         group: 
+          - "default"
+
+
+    - name: Wait for servers to start
+      wait_for:
+        host: 172.31.16.20
+        port: 22
+        delay: 5
+        timeout: 300
+        state: started
