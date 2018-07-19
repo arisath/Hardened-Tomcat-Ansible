@@ -4,4 +4,4 @@
 localhost ansible_connection=local
 
 [aws]
-52.56.188.194 ansible_ssh_user=ec2-user
+18.130.162.218 ansible_ssh_user=ec2-user
