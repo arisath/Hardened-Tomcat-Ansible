@@ -1,0 +1,30 @@
+---
+
+ - include_vars: "inv/aws/vars.yaml"
+
+ - name: Create Web Application folder
+   file:
+     path: "/var/apache-tomcat/webapps/demo"
+     state: directory
+     owner: "{{tomcat_user}}"
+     group: "{{tomcat_group}}"
+   become: yes
+   become_user: root
+
+ - template:
+    src: templates/index.j2
+    dest: /var/apache-tomcat/webapps/demo/index.html
+    owner: "{{tomcat_user}}"
+    group: "{{tomcat_group}}"
+    mode: 775
+   become: yes
+   become_user: root
+
+ - template:
+    src: templates/resume.j2
+    dest: /var/apache-tomcat/webapps/demo/resume.css
+    owner: "{{tomcat_user}}"
+    group: "{{tomcat_group}}"
+    mode: 775
+   become: yes
+   become_user: root

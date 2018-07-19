@@ -4,4 +4,7 @@ tomcat_version: 9.0.8
 tomcat_user: tomcat
 tomcat_group: tomcat
 
-tomcat_url: http://mirror.vorboss.net/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.zip
+tomcat_url: http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.zip
+
+name: Om Bhalamoudi
+grade: Senior Manager
