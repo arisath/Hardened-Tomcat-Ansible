@@ -1,0 +1,12 @@
+---
+
+- hosts: local
+  vars_files:
+    - inv/aws/vars.yaml
+    - ansible-vault.yaml
+  remote_user: ec2-user
+
+  roles:
+    - infraProvisioning
+  tags:
+    - provisioning

@@ -1,0 +1,15 @@
+---
+
+- hosts: aws
+  vars_files:
+    - inv/aws/vars.yaml
+  remote_user: ec2-user
+
+  roles:
+    - cleanTomcat
+    - installTomcat
+    - webapp
+  tags:
+    - webserver
+
+
