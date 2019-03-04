@@ -8,7 +8,7 @@ Ansible Playbook for deploying and configuring and hardening Apache Tomcat
 ### Prerequisites
 ```
 Python 2.7
-Ansible ...
+Ansible ....
 ```
 
 ### Installing
