@@ -37,7 +37,7 @@
  - name: Unzip tomcat
    unarchive:
     src: "/tmp/apache-tomcat-{{tomcat_version}}.zip"
-    dest: /var/
+    dest: /opt/
     copy: no
    become: yes
    become_user: root
@@ -45,13 +45,13 @@
  - name: Rename tomcat folder
    command: mv  "apache-tomcat-{{tomcat_version}}" apache-tomcat
    args:
-     chdir: /var/
+     chdir: /opt/
    become: yes
    become_user: root
 
  - name: Change tomcat folder user permissions
    file:
-    path: "/var/apache-tomcat"
+    path: "/opt/apache-tomcat"
     owner: "{{tomcat_user}}"
     group: "{{tomcat_group}}"
     recurse: yes
@@ -60,7 +60,7 @@
    become_user: root
 
  - name: Make tomcat executable
-   command: /bin/sh -c 'chmod 755 /var/apache-tomcat/bin/*.sh'
+   command: /bin/sh -c 'chmod 755 /opt/apache-tomcat/bin/*.sh'
    become: yes
    become_user: root
 
@@ -79,14 +79,30 @@
    become_user: root
 
  # - name: Replace the server.xml to enable ssl
- #   command: cp /tmp/server.xml "/var/apache-tomcat/conf/server.xml"
+ #   command: cp /tmp/server.xml "/opt/apache-tomcat/conf/server.xml"
  #   become: yes
  #   become_user: tomcat
 
  - name: Delete tomcat examples folder
    file:
-     path: "/var/apache-tomcat/webapps/examples"
+     path: "/opt/apache-tomcat/webapps/examples"
      state: absent
+   become: yes
+   become_user: root
+
+ - name: Make conf folder readable only from the tomcat user
+   file:
+     path: "/opt/apache-tomcat/conf"
+     state: directory
+     recurse: true
+     mode: 4440
+   become: yes
+   become_user: root
+
+ - name: Delete old webapps
+   shell: rm -rf *
+   args:
+     chdir: /opt/apache-tomcat/webapps/
    become: yes
    become_user: root
 
@@ -97,7 +113,7 @@
 
  - name: Wait for tomcat to start
    wait_for:
-     path: /var/apache-tomcat/logs/catalina.out
+     path: /opt/apache-tomcat/logs/catalina.out
      search_regex: Server startup   
    become: yes
    become_user: tomcat

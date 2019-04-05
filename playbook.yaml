@@ -18,8 +18,8 @@
   remote_user: ec2-user
 
   roles:
-    # - cleanTomcat
-    # - installTomcat
-    - webapp
+     - cleanTomcat
+     - installTomcat
+   # - webapp
   tags:
     - webserver

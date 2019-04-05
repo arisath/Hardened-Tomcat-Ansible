@@ -5,7 +5,7 @@
    become: yes
    become_user: root
    with_items: 
-     - "/var/apache-tomcat"
+     - "/opt/apache-tomcat"
      - "/tmp/*"
      - "/etc/init.d/tomcat"
 
