@@ -66,15 +66,10 @@
 
  - template:
     src: templates/tomcat.j2
-    dest: /etc/init.d/tomcat
+    dest: /etc/init.d/tomcat.service
     owner: "{{tomcat_user}}"
     group: "{{tomcat_group}}"
     mode: 775
-   become: yes
-   become_user: root
-
- - name: Register tomcat
-   command: chkconfig --add tomcat
    become: yes
    become_user: root
 
@@ -106,8 +101,13 @@
    become: yes
    become_user: root
 
+ - name: Register tomcat as a service
+   service: name=tomcat.service enabled=yes
+   become: yes
+   become_user: root
+
  - name: Start tomcat
-   command: service tomcat start
+   shell: service tomcat.service start
    become: yes
    become_user: root
 
