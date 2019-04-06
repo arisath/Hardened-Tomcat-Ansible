@@ -4,7 +4,7 @@ Ansible Playbook for deploying and configuring and hardening Apache Tomcat
 [![Generic badge](https://img.shields.io/badge/Ansible-Tomcat-<COLOR>.svg)](https://shields.io/)
 ![star this repo](http://githubbadges.com/star.svg?user=arisath&repo=Infrastructure)
 
-### Hardening includes
+### Hardening tasks include
 ```
 Running tomcat with dedicated user and group
 Removing default web applications
