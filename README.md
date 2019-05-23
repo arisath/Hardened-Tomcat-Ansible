@@ -16,7 +16,7 @@ Running tomcat as a service on start-up
 ### Prerequisites
 ```
 Python 2.7
-Ansible ..............
+Ansible ...............
 ```
 
 ### Installing
